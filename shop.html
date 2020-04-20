@@ -72,24 +72,19 @@
 
     <main class="row">
         <div class="col-md-3">
-            <h2 class="mb-4">Categories</h2>
-            <div class="list-group">
-                <a href="#" class="list-group-item active list-group-item-action ">
-                    Lorem ipsum
-                </a>
-                <a href="#" class="list-group-item list-group-item-action ">
-                    Lorem ipsum
-                </a>
-                <a href="#" class="list-group-item list-group-item-action ">
-                    Lorem ipsum
-                </a>
-                <a href="#" class="list-group-item list-group-item-action ">
-                    Lorem ipsum
-                </a>
-                <a href="#" class="list-group-item list-group-item-action ">
-                    Lorem ipsum
-                </a>
-            </div>
+            <h2 class="mb-4">Filter</h2>
+            <form class="form">
+                <select class="custom-select my-1 mr-sm-2" id="brandsList">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="Adidas">Adidas</option>
+                    <option value="Nike">Nike</option>
+                </select>
+                
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="submit" id="filterButton" class="btn btn-primary my-1">Filter</button>
+                    <button type="button" id="resetFilterButton" class="btn btn-danger my-1">Reset</button>
+                  </div>
+              </form>
         </div>
         <div class="col-md-9">
             <h2 class="mb-4">Products</h2>
