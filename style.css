@@ -1,15 +1,15 @@
 .bcg__header {
-  background-image: url(/images/bg2.jpg);
+  background-image: url(./images/bg2.jpg);
   background-size: cover;
 }
 
 .bcg__blog {
-  background-image: url(../images/bcgblog.jpg);
+  background-image: url(./images/bcgblog.jpg);
   background-size: cover;
 }
 
 .bcg__shop {
-  background-image: url(/images/bcg-shop.jpg);
+  background-image: url(./images/bcg-shop.jpg);
   background-size: cover;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .bcg__contact {
-  background-image: url(/../images/bcgcontact.jpg);
+  background-image: url(./images/bcgcontact.jpg);
   background-size: cover;
 }
 /*# sourceMappingURL=style.css.map */
