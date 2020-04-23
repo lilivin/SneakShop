@@ -74,11 +74,29 @@
         <div class="col-md-3">
             <h2 class="mb-4">Filter</h2>
             <form class="form">
+                <h5>Brand</h5>
                 <select class="custom-select my-1 mr-sm-2" id="brandsList">
                     <option value="" selected disabled hidden>Choose here</option>
                     <option value="Adidas">Adidas</option>
                     <option value="Nike">Nike</option>
                 </select>
+                <h5>Price</h5>
+                <div class="input-group mb-3">
+                    <input id="minPriceOfProduct" type="number" class="form-control" placeholder="Min" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input id="maxPriceOfProduct" type="number" class="form-control" placeholder="Max" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortTypes" id="exampleRadios1" value="up">
+                    <label class="form-check-label" for="exampleRadios1">
+                      Sortuj rosnąco
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sortTypes" id="exampleRadios2" value="down">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Sortuj malejąco
+                    </label>
+                </div>
                 
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="submit" id="filterButton" class="btn btn-primary my-1">Filter</button>
