@@ -22,4 +22,27 @@
   background-image: url(./images/bcgcontact.JPG);
   background-size: cover;
 }
+
+.fa-shopping-basket {
+  cursor: pointer;
+}
+
+.dot {
+  display: none;
+  position: absolute;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  bottom: -20%;
+  left: -20%;
+  background-color: red;
+}
+
+.buttonDelete {
+  top: 5px;
+  right: 5px;
+}
 /*# sourceMappingURL=style.css.map */

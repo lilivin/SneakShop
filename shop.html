@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0233149bfc.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -43,6 +44,12 @@
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-primary btn-md ml-5">Newsletter</button>
+                    </li>
+                    <li class="nav-item d-block ml-4">
+                        <button type="button" class="btn btn-primary position-relative " data-toggle="modal" data-target="#exampleModalCenter">
+                            <i class="fas fa-shopping-basket"></i>
+                            <span id="productsDot" class="dot">1</span>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -137,6 +144,72 @@
 <div class="second-footer py-4 d-flex bg-dark justify-content-center align-items-center">
     <p class="text-white m-0">Copyright @ GoodShop</p>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Koszyk</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div id="koszykProdukty"></div>
+            <div id="pricesSumContainer">Suma: 0$</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Zapłać</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div id="productInfo" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Produkt</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row  bc-dark">
+                        <div class="col-md-12 ml-auto"><img class="w-100" src="images/bcg-newsletter.jpg"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">Marka Model</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">Opis</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">Cena</div>
+                    </div>
+                    <div class="row m-auto">
+                        <button class="col-md-1 btn btn-outline-info p-0">38</button>
+                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">39</button>
+                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">40</button>
+                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">41</button>
+                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">42</button>
+                    </div>
+                    <select class="form-control">
+                        <option>Default select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                <button id="addButton" type="button" class="btn btn-primary">Dodaj do koszyka</button>
+            </div>
+      </div>
+    </div>
+  </div>
 
 
 
