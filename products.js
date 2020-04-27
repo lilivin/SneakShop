@@ -109,6 +109,8 @@ let pricesArray = [];
 let koszyk = [];
 let pricesSum = 0;
 
+let numbersInputValue = '';
+
 products.forEach(function(product){
     pricesArray .push(product.price);
 })
@@ -349,11 +351,18 @@ function deleteFunction(id) {
 
 let koszykProdukty = document.getElementById('koszykProdukty');
 
+function selectChange() {
+    let numbersInput = document.getElementById('numbersInput');
+    numbersInputValue = numbersInput.options[numbersInput.selectedIndex].value;
+    if(numbersInputValue == '') {
+        addButton.setAttribute('disabled', 'true');
+    }
+}
+
 function addToKoszyk(id) {
     let numbersInput = document.getElementById('numbersInput');
-    let numbersInputValue = numbersInput.options[numbersInput.selectedIndex].value;
+    numbersInputValue = numbersInput.options[numbersInput.selectedIndex].value;
     if (numbersInputValue != "") {
-        addButton.setAttribute('disabled', "false");
         for(let i = 0; i < products.length; i++) {
             if(id == products[i].id) {
                 let index = koszyk.length;
@@ -383,44 +392,51 @@ function addToKoszyk(id) {
                 }
             }
         }
+            $('#exampleModalCenter2').modal('hide');
     } else {
-        addButton.setAttribute('disabled', "true");
-        alert('Wpisz rozmiar buta!');
+        $('.alert').show();
     }
     sum();  
 }
 
 function addToKoszyk2(id) {
-    for(let i = 0; i < productsFinal.length; i++) {
-        if(id == productsFinal[i].id) {
-            let index = koszyk.length;
-            let numbersInput = document.getElementById('numbersInput');
-            //let numbersInputValue = numbersInput.options[numbersInput.selectedIndex].value;
-            let productKoszyk = {
-                "id": index,
-                "name": productsFinal[i].brand + " " + productsFinal[i].model,
-            //    "size": numbersInputValue,
-                "price": productsFinal[i].price
-            } 
-            koszyk.push(productKoszyk);
-            let div = document.createElement('div');
-            div.innerHTML = `
-            <div class="card w-100 my-2">
-                <div class="card-body position-relative pb-0">
-                    <h5 class="card-title">${koszyk[index].name}</h5>
-                    <p class="card-text">Price: ${koszyk[index].price}$ | Size: ${koszyk[index].size}</p>
-                    <button onclick="deleteFunction(${koszyk[index].id})" class="btn btn-danger btn-sm position-absolute buttonDelete">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
+    let numbersInput = document.getElementById('numbersInput');
+    numbersInputValue = numbersInput.options[numbersInput.selectedIndex].value;
+    if (numbersInputValue != "") {
+        for(let i = 0; i < productsFinal.length; i++) {
+            if(id == productsFinal[i].id) {
+                let index = koszyk.length;
+                let numbersInput = document.getElementById('numbersInput');
+                let numbersInputValue = numbersInput.options[numbersInput.selectedIndex].value;
+                let productKoszyk = {
+                    "id": index,
+                    "name": productsFinal[i].brand + " " + productsFinal[i].model,
+                    "size": numbersInputValue,
+                    "price": productsFinal[i].price
+                } 
+                koszyk.push(productKoszyk);
+                let div = document.createElement('div');
+                div.innerHTML = `
+                <div class="card w-100 my-2">
+                    <div class="card-body position-relative pb-0">
+                        <h5 class="card-title">${koszyk[index].name}</h5>
+                        <p class="card-text">Price: ${koszyk[index].price}$ | Size: ${koszyk[index].size}</p>
+                        <button onclick="deleteFunction(${koszyk[index].id})" class="btn btn-danger btn-sm position-absolute buttonDelete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            `;
-            koszykProdukty.appendChild(div);
-            if(koszyk.length > 0) {
-                productsDot.innerHTML = koszyk.length;
-                productsDot.style.display = 'block';
+                `;
+                koszykProdukty.appendChild(div);
+                if(koszyk.length > 0) {
+                    productsDot.innerHTML = koszyk.length;
+                    productsDot.style.display = 'block';
+                }
             }
         }
+        $('#exampleModalCenter2').modal('hide');
+    } else {
+        $('.alert').show();
     }
     sum();
 }
@@ -449,7 +465,7 @@ funkcja = (productId) => {
                         <p class="col-md-12">${products[i].descriptionLarge}</p>
                     </div>
                     <h5>Size</h5>
-                    <select id="numbersInput" class="form-control col-md-4" required>
+                    <select onchange="selectChange()" id="numbersInput" class="form-control col-md-4" required>
                         <option value="" selected disabled hidden>Choose here</option>
                         <option>38</option>
                         <option>39</option>
@@ -459,6 +475,10 @@ funkcja = (productId) => {
                         <option>43</option>
                         <option>44</option>
                     </select>
+                    <div class="alert alert-danger alert-dismissable mt-3" style="display:none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Size is empty!
+                    </div>
                     <div class="row">
                         <div class="col-md-12 my-1 h5 text-right">Price: ${products[i].price}$</div>
                     </div>
@@ -466,7 +486,7 @@ funkcja = (productId) => {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                <button id="addButton" type="button" onclick="addToKoszyk(${products[i].id})" data-dismiss="modal" class="btn btn-primary">Dodaj do koszyka</button>
+                <button id="addButton" type="button" onclick="addToKoszyk(${products[i].id})" class="btn btn-primary">Dodaj do koszyka</button>
             </div>
             `
         }
@@ -496,7 +516,7 @@ funkcja2 = (productId) => {
                         <p class="col-md-12">${productsFinal[i].descriptionLarge}</p>
                     </div>
                     <h5>Size</h5>
-                    <select class="form-control col-md-4">
+                    <select onchange="selectChange()" id="numbersInput" class="form-control col-md-4" required>
                         <option value="" selected disabled hidden>Choose here</option>
                         <option>38</option>
                         <option>39</option>
@@ -506,6 +526,10 @@ funkcja2 = (productId) => {
                         <option>43</option>
                         <option>44</option>
                     </select>
+                    <div class="alert alert-danger alert-dismissable mt-3" style="display:none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Size is empty!
+                    </div>
                     <div class="row">
                         <div class="col-md-12 my-1 h5 text-right">Price: ${productsFinal[i].price}$</div>
                     </div>
@@ -513,7 +537,7 @@ funkcja2 = (productId) => {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                <button id="addButton" type="button" onclick="addToKoszyk2(${productsFinal[i].id})" data-dismiss="modal" class="btn btn-primary">Dodaj do koszyka</button>
+                <button id="addButton" type="button" onclick="addToKoszyk2(${productsFinal[i].id})" class="btn btn-primary">Dodaj do koszyka</button>
             </div>
             `
         }
