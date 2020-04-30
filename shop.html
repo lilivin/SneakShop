@@ -37,15 +37,15 @@
                             Shop
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-4">
                         <a href="" class="nav-link">
                             Contact
                         </a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary btn-md ml-5">Newsletter</button>
+                        <button type="button" class="btn btn-primary btn-md mr-4 mb-2">Newsletter</button>
                     </li>
-                    <li class="nav-item d-block ml-4">
+                    <li class="nav-item d-block">
                         <button type="button" class="btn btn-primary position-relative " data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fas fa-shopping-basket"></i>
                             <span id="productsDot" class="dot">1</span>
@@ -57,7 +57,7 @@
     </nav>
     <div class="jumbotron bcg__header text-white jumbotron-fluid">
         <div class="container">
-            <h1 class="display-3">SneakShop</h1>
+            <h1 class="display-4">SneakShop</h1>
             <p class="lead">Your style, your sneakers.</p>
         </div>
     </div>
@@ -93,13 +93,13 @@
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="sortTypes" id="exampleRadios1" value="up">
                     <label class="form-check-label" for="exampleRadios1">
-                      Sortuj rosnąco
+                        Sort ascending
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="sortTypes" id="exampleRadios2" value="down">
                     <label class="form-check-label" for="exampleRadios2">
-                      Sortuj malejąco
+                        Sort descendingly
                     </label>
                 </div>
                 
@@ -112,8 +112,9 @@
         <div class="col-md-9">
             <h2 class="mb-4">Products</h2>
             <div id="productsContainer" class="row">
+
             </div>
-            <button type="button" id="moreProductsButton" class="btn mx-auto my-4 btn-primary btn-lg">Zobacz więcej produktów</button>
+            <button type="button" id="moreProductsButton" class="btn mx-auto my-4 btn-primary btn-lg">Show more products</button>
         </div>
     </main>
 </div>
@@ -150,18 +151,18 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Koszyk</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Basket</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <div id="koszykProdukty"></div>
-            <div id="pricesSumContainer">Suma: 0$</div>
+            <div id="basketProducts"></div>
+            <div id="pricesSumContainer">Sum: 0$</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Zapłać</button>
+          <button type="button" class="btn btn-primary">Pay</button>
         </div>
       </div>
     </div>
@@ -172,7 +173,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div id="productInfo" class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Produkt</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -183,39 +184,49 @@
                         <div class="col-md-12 ml-auto"><img class="w-100" src="images/bcg-newsletter.jpg"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">Marka Model</div>
+                        <div id="brandContainer" class="col-md-12 h3 my-2">Brand Model</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">Opis</div>
+                        <p id="descriptionContainer" class="col-md-12">Description</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">Cena</div>
-                    </div>
-                    <div class="row m-auto">
-                        <button class="col-md-1 btn btn-outline-info p-0">38</button>
-                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">39</button>
-                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">40</button>
-                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">41</button>
-                        <button class="col-md-1 btn btn-outline-info ml-1 p-0">42</button>
-                    </div>
-                    <select class="form-control">
-                        <option>Default select</option>
+                    <h5>Size</h5>
+                    <select id="numbersInput" class="form-control col-md-4" required>
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
                     </select>
+                    <div class="alert alert-danger alert-dismissable mt-3" style="display:none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Size is empty!
+                    </div>
+                    <div class="row">
+                        <div id="priceContainer" class="col-md-12 my-1 h5 text-right">Price: ${products[i].price}$</div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                <button id="addButton" type="button" class="btn btn-primary">Dodaj do koszyka</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="addButton" type="button" class="btn btn-primary">Add to basket</button>
             </div>
       </div>
     </div>
   </div>
 
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="./products.js"></script>
+<script src="./scripts/functions/refreshButton.js"></script>
+<script src="./scripts/functions/showProducts.js"></script>
+<script src="./scripts/functions/filterFunctions.js"></script>
+<script src="./scripts/functions/addToBasket.js"></script>
+<script src="./scripts/functions/deleteFunction.js"></script>
+<script src="./scripts/functions/drawProductsFunction.js"></script>
+<script src="./scripts/functions/productsList.js"></script>
+<script src="./scripts/main.js"></script>
 </body>
 </html>
